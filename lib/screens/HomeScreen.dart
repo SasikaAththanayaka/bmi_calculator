@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int height = 150;
   int weight = 45;
+  int age = 25;
   double result = 0;
   Color maleBoxColr = Colors.blue;
   Color femaleBoxColor = Colors.blue;
@@ -30,6 +33,19 @@ class _HomeScreenState extends State<HomeScreen> {
         femaleBoxColor = Colors.blue;
       }
     }
+  }
+
+  String calBMI(int w, int h) {
+    String textResult = "";
+    result = w / pow(h / 100, 2);
+    if (result > 25) {
+      textResult = "You\'re over weight";
+    } else if (result >= 18.5 && result <= 25) {
+      textResult = "You have normal weight";
+    } else {
+      textResult = "You\'re under weight";
+    }
+    return textResult;
   }
 
   @override
@@ -232,19 +248,37 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            CircleAvatar(
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.blueAccent,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              child: CircleAvatar(
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.blue,
+                                  size: 30.0,
+                                ),
+                                backgroundColor: Colors.white,
+                                radius: 28.0,
                               ),
-                              backgroundColor: Colors.white,
                             ),
-                            CircleAvatar(
-                              child: Icon(
-                                Icons.access_alarms,
-                                color: Colors.white,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              child: CircleAvatar(
+                                child: Icon(
+                                  FontAwesomeIcons.minus,
+                                  color: Colors.blue,
+                                ),
+                                backgroundColor: Colors.white,
+                                radius: 28.0,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],
@@ -275,7 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 15.0,
                         ),
                         Text(
-                          weight.toString(),
+                          age.toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 26,
@@ -288,19 +322,36 @@ class _HomeScreenState extends State<HomeScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            CircleAvatar(
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.blueAccent,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                              child: CircleAvatar(
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.blue,
+                                ),
+                                backgroundColor: Colors.white,
+                                radius: 28.0,
                               ),
-                              backgroundColor: Colors.white,
                             ),
-                            CircleAvatar(
-                              child: Icon(
-                                Icons.access_alarms,
-                                color: Colors.white,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                              child: CircleAvatar(
+                                child: Icon(
+                                  FontAwesomeIcons.minus,
+                                  color: Colors.blue,
+                                ),
+                                backgroundColor: Colors.white,
+                                radius: 28.0,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],
@@ -318,7 +369,61 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             child: Center(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    String textResult = calBMI(weight, height);
+
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Dialog(
+                            backgroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Container(
+                              height: 200.0,
+                              margin: EdgeInsets.all(10.0),
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 30.0,
+                                  ),
+                                  Text(
+                                    "RESULT",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 28.0,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  Text(
+                                    result.toStringAsFixed(1),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  Text(
+                                    textResult,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 25.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  });
+                },
                 child: Text(
                   "CALCULATE",
                   style: TextStyle(
