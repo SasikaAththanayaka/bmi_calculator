@@ -9,7 +9,27 @@ class _HomeScreenState extends State<HomeScreen> {
   int height = 150;
   int weight = 45;
   double result = 0;
-  Color selectedColor = Colors.black38;
+  Color maleBoxColr = Colors.blue;
+  Color femaleBoxColor = Colors.blue;
+  Color activateColr = Colors.white70;
+
+  void updateColor(int gender) {
+    if (gender == 1) {
+      if (maleBoxColr == Colors.blue) {
+        maleBoxColr = Colors.red;
+        femaleBoxColor = Colors.blue;
+      } else {
+        maleBoxColr = Colors.blue;
+      }
+    } else {
+      if (femaleBoxColor == Colors.blue) {
+        femaleBoxColor = Colors.red;
+        maleBoxColr = Colors.blue;
+      } else {
+        femaleBoxColor = Colors.blue;
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 30),
         )),
       ),
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.black12,
       body: Column(
         children: <Widget>[
           //FIRST ROW
@@ -33,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        selectedColor = Colors.black;
+                        updateColor(1);
                       });
                     },
                     child: Container(
@@ -59,36 +79,43 @@ class _HomeScreenState extends State<HomeScreen> {
                       margin: EdgeInsets.all(15.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
-                        color: selectedColor,
+                        color: maleBoxColr,
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Container(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        updateColor(2);
+                      });
+                    },
                     child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 50.0, bottom: 35.0),
-                            child: Text(
-                              "FEMALE",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.white,
-                                fontSize: 32.0,
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 50.0, bottom: 35.0),
+                              child: Text(
+                                "FEMALE",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.white,
+                                  fontSize: 32.0,
+                                ),
                               ),
                             ),
-                          ),
-                          Icon(Icons.mic_sharp),
-                        ],
+                            Icon(Icons.mic_sharp),
+                          ],
+                        ),
                       ),
-                    ),
-                    margin: EdgeInsets.all(15.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.black45,
+                      margin: EdgeInsets.all(15.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: femaleBoxColor,
+                      ),
                     ),
                   ),
                 ),
@@ -140,11 +167,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       value: height.toDouble(),
                       min: 100.0,
                       max: 200.0,
-                      activeColor: Colors.white60,
+                      activeColor: activateColr,
                       inactiveColor: Colors.white30,
                       onChanged: (double value) {
                         setState(() {
                           height = value.round();
+                          activateColr = Colors.redAccent;
                         });
                       },
                     ),
@@ -154,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: EdgeInsets.all(15.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color: Colors.black38,
+                color: Colors.blue,
               ),
             ),
           ),
@@ -227,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.black38,
+                      color: Colors.blue,
                     ),
                   ),
                 ),
@@ -283,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.black38,
+                      color: Colors.blue,
                     ),
                   ),
                 ),
@@ -295,7 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: GestureDetector(
                 onTap: () {},
                 child: Text(
-                  "CALCULATOR",
+                  "CALCULATE",
                   style: TextStyle(
                       fontWeight: FontWeight.w300,
                       fontSize: 30,
@@ -308,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.all(15.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: Colors.black38,
+              color: Colors.blue,
             ),
           )
         ],
