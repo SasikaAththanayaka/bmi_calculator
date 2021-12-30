@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -61,18 +62,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 50.0, bottom: 35.0),
-                              child: Text(
-                                "MALE",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white,
-                                  fontSize: 32.0,
-                                ),
+                              padding: const EdgeInsets.all(40.0),
+                              child: Icon(
+                                FontAwesomeIcons.mars,
+                                size: 85.0,
                               ),
                             ),
-                            Icon(Icons.mic_sharp),
                           ],
                         ),
                       ),
@@ -95,19 +90,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Container(
                         child: Column(
                           children: <Widget>[
+                            /*Text(
+                              "FEMALE",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
+                            ),*/
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 50.0, bottom: 35.0),
-                              child: Text(
-                                "FEMALE",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white,
-                                  fontSize: 32.0,
-                                ),
+                              padding: const EdgeInsets.all(40.0),
+                              child: Icon(
+                                FontAwesomeIcons.female,
+                                size: 85.0,
                               ),
                             ),
-                            Icon(Icons.mic_sharp),
                           ],
                         ),
                       ),
