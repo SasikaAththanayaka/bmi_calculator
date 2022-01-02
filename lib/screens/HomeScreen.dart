@@ -80,8 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: const EdgeInsets.all(40.0),
                               child: Icon(
-                                FontAwesomeIcons.mars,
+                                FontAwesomeIcons.male,
                                 size: 85.0,
+                                color: Colors.white,
                               ),
                             ),
                           ],
@@ -119,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Icon(
                                 FontAwesomeIcons.female,
                                 size: 85.0,
+                                color: Colors.white,
                               ),
                             ),
                           ],
